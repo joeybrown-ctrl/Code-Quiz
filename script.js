@@ -28,11 +28,9 @@ setTime();
 
 function quizStart() {
     clearInterval(timer);
-    let startScreenEl = document.querySelector("#congrats");
-    let finalScore = document.querySelector("#final-score");
-
-    finalScore.textContent = "time left: " + secondsLeft;
-    endScreenEl.textContent = "Congrats! Your score is: ";
+    let startScreenEl = document.querySelector("#start-btn");
+    
+    nextQuestion();
 }
 
 //object of questions + answers
