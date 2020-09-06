@@ -6,7 +6,6 @@ const button4 = document.querySelector("#btn4");
 const timer = document.querySelector("#timer");
 const initials = document.querySelector("#initials");
 const submit = document.querySelector("#submit-button");
-const congrats = document.querySelector("#congrats");
 
 //timer function
 let secondsLeft = 60;
@@ -87,7 +86,7 @@ let questionAnswers = [
     },
 
     {
-        question: "How to write an if statement for execuing some code if 'i' is not equal to 5?",
+        question: "How to write an if statement for executing some code if 'i' is not equal to 5?",
         answers: ["if i ==! 5 then",
             "if(i !== 5)",
             "if(i <> 5)",
@@ -121,6 +120,8 @@ function nextQuestion() {
     button2.textContent = currentQuestion.answers[1];
     button3.textContent = currentQuestion.answers[2];
     button4.textContent = currentQuestion.answers[3];
+
+    
     //button4.textContent = currentQuestion.correctAnswer;
     
     //figure out how to have time left as score at the end of quiz
