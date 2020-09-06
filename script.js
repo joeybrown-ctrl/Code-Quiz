@@ -25,15 +25,7 @@ function setTime() {
 
 setTime();
 
-function quizStart() {
-    clearInterval(timer);
-    let startScreenEl = document.querySelector("#start-btn");
-    
-    nextQuestion();
-}
-
 //object of questions + answers
-//figure out how to randomize the answers so that the correct answer isn't always in the same spot
 let questionAnswers = [
     {
         question: "Commonly used data types do NOT include",
@@ -113,6 +105,7 @@ let currentQuestion = questionAnswers[0];
 
 nextQuestion();
 
+//function to call questions
 function nextQuestion() {
     currentQuestion = questionAnswers[index];
     question.textContent = currentQuestion.question;
@@ -120,16 +113,10 @@ function nextQuestion() {
     button2.textContent = currentQuestion.answers[1];
     button3.textContent = currentQuestion.answers[2];
     button4.textContent = currentQuestion.answers[3];
-
-    
-    //button4.textContent = currentQuestion.correctAnswer;
-    
-    //figure out how to have time left as score at the end of quiz
-    //and how to log user intials (form?) 
-    //and save their score to local storage
    
 }
 
+//event listeners for buttons
 button1.addEventListener("click", function(event){
     event.preventDefault();
     if (button1.textContent === currentQuestion.correctAnswer) {
@@ -174,6 +161,16 @@ button4.addEventListener("click", function(event){
     nextQuestion();
 });
 
+//function to start quiz
+function quizStart() {
+    clearInterval(timer);
+    let startScreenEl = document.querySelector("#start-btn");
+    
+    nextQuestion();
+}
+
+
+//function to end quiz
 function quizEnd() {
     clearInterval(timer);
     let endScreenEl = document.querySelector("#congrats");
@@ -183,6 +180,7 @@ function quizEnd() {
     endScreenEl.textContent = "Congrats! Your score is: ";
 }
 
+//function to save initials and score to local storage
 function initialsSave() {
     let initializer = initials.value.trim();
     if (initializer !== "") {
