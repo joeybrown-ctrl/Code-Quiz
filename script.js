@@ -86,17 +86,6 @@ function nextQuestion() {
    
 }
 
-function wrongAnswer() {
-    if (currentQuestion !== questionAnswers.question.correctAnswer) {
-        secondsLeft -= 15;
-        alert("You've lost points, ya ding dong!");
-    } else {
-        alert("Ya smart");
-    }
-}
-
-
-
 //event listeners for buttons
 button1.addEventListener("click", function(event){
     event.preventDefault();
@@ -104,6 +93,7 @@ button1.addEventListener("click", function(event){
         alert("correct answer");
     } else {
         alert("wrong!");
+        secondsLeft -= 15;
     }
     index++
     if (index === questionAnswers.length) {
@@ -119,6 +109,7 @@ button2.addEventListener("click", function(event){
         alert("correct answer");
     } else {
         alert("wrong!");
+        secondsLeft -= 15;
     }
     index++
     if (index === questionAnswers.length) {
@@ -134,6 +125,7 @@ button3.addEventListener("click", function(event){
         alert("correct answer");
     } else {
         alert("wrong!");
+        secondsLeft -= 15;
     }
     index++
     if (index === questionAnswers.length) {
@@ -149,6 +141,7 @@ button4.addEventListener("click", function(event){
         alert("correct answer");
     } else {
         alert("wrong!");
+        secondsLeft -= 15;
     }
     index++
     if (index === questionAnswers.length) {
@@ -190,7 +183,7 @@ function quizEnd() {
     let finalScore = document.querySelector("#final-score");
 
     finalScore.textContent = "time left: " + secondsLeft;
-    endScreenEl.textContent = "Congrats! Your score is: ";
+    // endScreenEl.textContent = "Congrats! Your score is: ";
 }
 
 //function to save initials and score to local storage
