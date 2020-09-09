@@ -82,9 +82,9 @@ function nextQuestion() {
 button1.addEventListener("click", function(event){
     event.preventDefault();
     if (button1.textContent === currentQuestion.correctAnswer) {
-        alert("correct answer");
+        alert("correct answer!");
     } else {
-        alert("wrong!");
+        alert("wrong answer ya ding dong!");
         secondsLeft -= 15;
     }
     index++
@@ -100,7 +100,7 @@ button2.addEventListener("click", function(event){
     if (button2.textContent === currentQuestion.correctAnswer) {
         alert("correct answer");
     } else {
-        alert("wrong!");
+        alert("wrong answer ya ding dong!");
         secondsLeft -= 15;
     }
     index++
@@ -116,7 +116,7 @@ button3.addEventListener("click", function(event){
     if (button3.textContent === currentQuestion.correctAnswer) {
         alert("correct answer");
     } else {
-        alert("wrong!");
+        alert("wrong answer ya ding dong!");
         secondsLeft -= 15;
     }
     index++
@@ -132,7 +132,7 @@ button4.addEventListener("click", function(event){
     if (button4.textContent === currentQuestion.correctAnswer) {
         alert("correct answer");
     } else {
-        alert("wrong!");
+        alert("wrong answer ya ding dong!");
         secondsLeft -= 15;
     }
     index++
