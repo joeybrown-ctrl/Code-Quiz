@@ -4,7 +4,7 @@ const button2 = document.querySelector("#btn2");
 const button3 = document.querySelector("#btn3");
 const button4 = document.querySelector("#btn4");
 const timeEl = document.querySelector("#timer");
-const initials = document.querySelector("#initials");
+
 const submit = document.querySelector("#submit-button");
 
 //timer function
@@ -181,28 +181,31 @@ function quizEnd() {
     clearInterval(timer);
     let endScreenEl = document.querySelector("#congrats");
     let finalScore = document.querySelector("#final-score");
+    let highScores = document.querySelector("#highscores-div");
 
-    finalScore.textContent = "time left: " + secondsLeft;
-    // endScreenEl.textContent = "Congrats! Your score is: ";
+    highScores.style.display = "block";
+
+    finalScore.textContent = " time left: " + secondsLeft;
+    
 }
 
 //function to save initials and score to local storage
 function initialsSave() {
+    const initials = document.querySelector("#initials");
     let initializer = initials.value.trim();
     if (initializer !== "") {
-        alert("enter your initials");
-        let highScores = JSON.parse(window.localStorage.getItem("high-scores"));
+        let highScores = JSON.parse(window.localStorage.getItem("high-scores")|| "[]");
 
         let newScore = {
-            score: time,
-            initials: initials,
+            score: secondsLeft,
+            initials: initializer,
 
         }
 
         highScores.push(newScore);
         window.localStorage.setItem("high-scores", JSON.stringify(highScores));
 
-        window.location.href = "highscore.html"
+        window.location.href = "index.html";
 
         
     }
