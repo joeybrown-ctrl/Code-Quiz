@@ -1,25 +1,17 @@
+//global variables storing IDs
 const question = document.querySelector("#question");
 const button1 = document.querySelector("#btn1");
 const button2 = document.querySelector("#btn2");
 const button3 = document.querySelector("#btn3");
 const button4 = document.querySelector("#btn4");
 const timeEl = document.querySelector("#timer");
-
 const submit = document.querySelector("#submit-button");
 
-//timer function
+//timer variables
 let secondsLeft = 60;
 let timer
-//function setTime() {
-   // let timerInterval = setInterval(function () {
-   
-   // }, 1000);
 
-//}
-
-//setTime();
-
-//object of questions + answers
+//question object storing questions and answers within an array
 let questionAnswers = [
     {
         question: "Commonly used data types do NOT include",
@@ -72,6 +64,7 @@ let questionAnswers = [
     },
 ];
 
+//array variables
 let index = 0;
 let currentQuestion = questionAnswers[0];
 
@@ -82,11 +75,10 @@ function nextQuestion() {
     button1.textContent = currentQuestion.answers[0];
     button2.textContent = currentQuestion.answers[1];
     button3.textContent = currentQuestion.answers[2];
-    button4.textContent = currentQuestion.answers[3];
-   
+    button4.textContent = currentQuestion.answers[3];  
 }
 
-//event listeners for buttons
+//event listeners for buttons, with if statements to alert user and call functions
 button1.addEventListener("click", function(event){
     event.preventDefault();
     if (button1.textContent === currentQuestion.correctAnswer) {
@@ -148,12 +140,8 @@ button4.addEventListener("click", function(event){
         quizEnd();
     } else {
         nextQuestion();
-    }
-    
-
+    } 
 });
-
-
 
 //function to start quiz
 function quizStart() {
@@ -166,26 +154,21 @@ function quizStart() {
             quizEnd();
         }
     }, 1000);
-
-
-    question.removeAttribute("class");
     
+    question.removeAttribute("class");
     nextQuestion();
 }
 
 quizStart()
 
-
 //function to end quiz
 function quizEnd() {
     clearInterval(timer);
-    let endScreenEl = document.querySelector("#congrats");
     let finalScore = document.querySelector("#final-score");
     let highScores = document.querySelector("#highscores-div");
 
     highScores.style.display = "block";
-
-    finalScore.textContent = " time left: " + secondsLeft;
+    finalScore.textContent = " is time left: " + secondsLeft;
     
 }
 
@@ -199,15 +182,11 @@ function initialsSave() {
         let newScore = {
             score: secondsLeft,
             initials: initializer,
-
         }
 
         highScores.push(newScore);
         window.localStorage.setItem("high-scores", JSON.stringify(highScores));
-
         window.location.href = "index.html";
-
-        
     }
 }
 submit.onclick = initialsSave;
