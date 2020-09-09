@@ -3,27 +3,21 @@ const button1 = document.querySelector("#btn1");
 const button2 = document.querySelector("#btn2");
 const button3 = document.querySelector("#btn3");
 const button4 = document.querySelector("#btn4");
-const timer = document.querySelector("#timer");
+const timeEl = document.querySelector("#timer");
 const initials = document.querySelector("#initials");
 const submit = document.querySelector("#submit-button");
 
 //timer function
 let secondsLeft = 60;
+let timer
+//function setTime() {
+   // let timerInterval = setInterval(function () {
+   
+   // }, 1000);
 
-function setTime() {
-    let timerInterval = setInterval(function () {
-        secondsLeft--;
-        timer.textContent = "time left: " + secondsLeft;
+//}
 
-        if (secondsLeft === 0) {
-            clearInterval(timerInterval);
-            quizEnd();
-        }
-    }, 1000);
-
-}
-
-setTime();
+//setTime();
 
 //object of questions + answers
 let questionAnswers = [
@@ -76,34 +70,10 @@ let questionAnswers = [
         ],
         correctAnswer: "if(i === 5)"
     },
-
-    {
-        question: "How to write an if statement for executing some code if 'i' is not equal to 5?",
-        answers: ["if i ==! 5 then",
-            "if(i !== 5)",
-            "if(i <> 5)",
-            "if i <> 5",
-            
-        ],
-        correctAnswer: "if(i !== 5)"
-        
-    },
-
-    {
-        question: "How do you find the number with the highest value of x and y?",
-        answers: ["Math.ceil(x, y)",
-            "ceil(x, y)",
-            "top(x, y)",
-            "Math.max(x, y)",
-        ],
-        correctAnswer: "Math.max(x, y)"
-    }
 ];
 
 let index = 0;
 let currentQuestion = questionAnswers[0];
-
-nextQuestion();
 
 //function to call questions
 function nextQuestion() {
@@ -116,6 +86,17 @@ function nextQuestion() {
    
 }
 
+function wrongAnswer() {
+    if (currentQuestion !== questionAnswers.question.correctAnswer) {
+        secondsLeft -= 15;
+        alert("You've lost points, ya ding dong!");
+    } else {
+        alert("Ya smart");
+    }
+}
+
+
+
 //event listeners for buttons
 button1.addEventListener("click", function(event){
     event.preventDefault();
@@ -125,7 +106,11 @@ button1.addEventListener("click", function(event){
         alert("wrong!");
     }
     index++
-    nextQuestion();
+    if (index === questionAnswers.length) {
+        quizEnd();
+    } else {
+        nextQuestion();
+    }
 });
 
 button2.addEventListener("click", function(event){
@@ -136,7 +121,11 @@ button2.addEventListener("click", function(event){
         alert("wrong!");
     }
     index++
-    nextQuestion();
+    if (index === questionAnswers.length) {
+        quizEnd();
+    } else {
+        nextQuestion();
+    }
 });
 
 button3.addEventListener("click", function(event){
@@ -147,7 +136,11 @@ button3.addEventListener("click", function(event){
         alert("wrong!");
     }
     index++
-    nextQuestion();
+    if (index === questionAnswers.length) {
+        quizEnd();
+    } else {
+        nextQuestion();
+    }
 });
 
 button4.addEventListener("click", function(event){
@@ -158,16 +151,36 @@ button4.addEventListener("click", function(event){
         alert("wrong!");
     }
     index++
-    nextQuestion();
+    if (index === questionAnswers.length) {
+        quizEnd();
+    } else {
+        nextQuestion();
+    }
+    
+
 });
+
+
 
 //function to start quiz
 function quizStart() {
-    clearInterval(timer);
-    let startScreenEl = document.querySelector("#start-btn");
+    timer = setInterval(function(){
+        secondsLeft--;
+        timeEl.textContent = "time left: " + secondsLeft;
+
+        if (secondsLeft <= 0) {
+            clearInterval(timer);
+            quizEnd();
+        }
+    }, 1000);
+
+
+    question.removeAttribute("class");
     
     nextQuestion();
 }
+
+quizStart()
 
 
 //function to end quiz
@@ -201,4 +214,4 @@ function initialsSave() {
         
     }
 }
-submit.onClick = initialsSave
+submit.onclick = initialsSave;
