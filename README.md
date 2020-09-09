@@ -34,4 +34,6 @@ Once the user enters their intials and hits submit, their score and initials are
 
 ## Contributors
 
+-Special thanks to Joseph Jepson [alligatormonday](https://github.com/alligatormonday) for giving my project a good looking over.
+
 -Joey Brown <br> <gjoey.brown@gmail.com> <br> &copy; 2020 Joey Brown. All rights reserved.
